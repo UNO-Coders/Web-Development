@@ -1,4 +1,4 @@
-[![Say Thanks!](https://img.shields.io/badge/Say%20Thanks-!-1EAEDB.svg)](https://saythanks.io/to/bachittarjeet@gmail.com)
+[![Say Thanks!](https://img.shields.io/badge/Say%20Thanks-!-1EAEDB.svg)](https://saythanks.io/to/bachittarjeet%40gmail.com)
 [![contributions welcome](https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat)](https://github.com/Banglorians/Web-Development/issues)
  [![HitCount](http://hits.dwyl.com/Banglorians/Web-Development.svg)](http://hits.dwyl.com/Banglorians/Web-Development)
 [![GitHub issues](https://img.shields.io/github/issues/Banglorians/Web-Development.svg)](https://github.com/Banglorians/Web-Development/issues)
