@@ -7,11 +7,26 @@
 [![GitHub license](https://img.shields.io/github/license/Banglorians/Web-Development.svg)](https://github.com/Banglorians/Web-Development/blob/master/LICENSE)
 [![Twitter](https://img.shields.io/twitter/url/https/github.com/Banglorians/Web-Development.svg?style=social)](https://twitter.com/intent/tweet?text=Check%20this%20Amazing%20Resource:&url=https%3A%2F%2Fgithub.com%Banglorians%2FWeb-Development)
 
-# Web Development
-# **Hi** There <img src="https://raw.githubusercontent.com/iampavangandhi/iampavangandhi/master/gifs/Hi.gif" width="35px">
+## Web Development
 
-<p>
-This is an open-source repository for all who want to contribute to Opensource projects in Web Development During Hacktoberfest.</p>
+**Hi** There <img src="https://raw.githubusercontent.com/iampavangandhi/iampavangandhi/master/gifs/Hi.gif" width="35px">
+
+This is an open-source repository for all who want to contribute to Opensource projects in Web Development During Hacktoberfest.
+
+## Contributing Members
+**Team Leads (Contacts) : [Bachittarjeet Singh](https://github.com/bachittarjeet)(@bachittarjeet)**
+
+#### Other Members:
+
+|Name     |  Twitter Handle   | 
+|---------|-----------------|
+|[Akshit](https://github.com/akshitkumar450)| NA        |
+|[Dhruvil Trivedi](https://github.com/trivedidhruvil9) |     NA    |
+|[Bratin Kundu](https://github.com/bratinkundu)| NA        |
+|[Muhammad Abdullah ](https://github.com/abdullah2205) |     NA    |
+|[Parth Saini](https://github.com/ParthSaini-2006)| NA        |
+|[Snehal](https://github.com/snehal2841) |     NA    |
+
 
 ## Contributing
 
@@ -25,10 +40,7 @@ If you want to add a project to this list, please make sure that:
 
 If they meet the requirements above, feel free to create a PR. Happy Hacking! :sparkles: 
 
-
 # A List of Useful Resources for Web Developers
-
----
 
 ## Table of Contents
 
