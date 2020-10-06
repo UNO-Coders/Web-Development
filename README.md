@@ -9,14 +9,12 @@
 
 ## Web Development
 
-**Hi** There <img src="https://raw.githubusercontent.com/iampavangandhi/iampavangandhi/master/gifs/Hi.gif" width="35px">
-
-This is an open-source repository for all who want to contribute to Opensource projects in Web Development During Hacktoberfest.
+**Hi** There <img src="https://raw.githubusercontent.com/iampavangandhi/iampavangandhi/master/gifs/Hi.gif" width="35px"> This is an open-source repository for all who want to contribute to Opensource projects in Web Development During Hacktoberfest.
 
 ## Contributing Members
 **Team Leads (Contacts) : [Bachittarjeet Singh](https://github.com/bachittarjeet)(@bachittarjeet)**
 
-#### Other Members:
+#### Members:
 
 |Name     |  Twitter Handle   | 
 |---------|-----------------|
