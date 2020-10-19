@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BootStrap_inputGroups</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600&display=swap" rel="stylesheet">
+    <style>
+      body{
+        background-color: whitesmoke;
+        font-family: 'Poppins', sans-serif;
+      }
+      .container{
+        border : 1px solid rgba(0, 0, 0, 0.555);
+        padding : 20px;
+        border-radius: 10px;
+        width : 60%;
+        background-color: white;
+        -webkit-box-shadow: 3px 0px 11px -2px rgb(206, 206, 206);
+        -moz-box-shadow: 3px 0px 11px -2px rgb(211, 210, 210);
+        box-shadow: 3px 0px 11px -2px rgba(192, 192, 192, 0.438);
+      }
+      .title{
+        margin: 15px 0;
+        font-size: 1.5rem;
+      }
+      .heading{
+        text-transform: uppercase;
+        color:rgb(240, 27, 27);
+        text-align: center;
+        margin-bottom : 20px;
+        text-shadow: 2px 2px 4px rgba(211, 208, 210, 0.8);
+      }
+    </style>
+</head>
+<body>
+    <div class="container mt-5">
+      <h1 class="heading">bootstrap input groups</h1>
+      <div class="input-fields">
+        <h2 class="title">Input Fields</h2>
+        <div class="input-group mb-3">
+          <div class="input-group-prepend">
+            <span class="input-group-text" id="basic-addon1">@</span>
+          </div>
+          <input type="text" class="form-control" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1">
+        </div>
+        <div class="input-group mb-3">
+          <input type="text" class="form-control" placeholder="Recipient's username" aria-label="Recipient's username" aria-describedby="basic-addon2">
+          <div class="input-group-append">
+            <span class="input-group-text" id="basic-addon2">@example.com</span>
+          </div>
+        </div> 
+        <div class="input-group mb-3">
+          <div class="input-group-prepend">
+            <span class="input-group-text" id="basic-addon3">https://example.com/users/</span>
+          </div>
+          <input type="text" class="form-control" id="basic-url" aria-describedby="basic-addon3">
+        </div>  
+        <div class="input-group mb-3">
+          <div class="input-group-prepend">
+            <span class="input-group-text">$</span>
+          </div>
+          <input type="text" class="form-control" aria-label="Amount (to the nearest dollar)">
+          <div class="input-group-append">
+            <span class="input-group-text">.00</span>
+          </div>
+        </div>
+        <div class="input-group">
+          <div class="input-group-prepend">
+            <span class="input-group-text">With textarea</span>
+          </div>
+          <textarea class="form-control" aria-label="With textarea"></textarea>
+        </div>
+      </div>
+
+      <div class="input-sizing">
+        <h2 class="title">Button addons</h2>
+        <div class="input-group mb-3">
+          <div class="input-group-prepend">
+            <button class="btn btn btn-outline-primary" type="button">Button</button>
+          </div>
+          <input type="text" class="form-control" placeholder="" aria-label="" aria-describedby="basic-addon1">
+        </div>
+        
+        <div class="input-group mb-3">
+          <input type="text" class="form-control" placeholder="Recipient's username" aria-label="Recipient's username" aria-describedby="basic-addon2">
+          <div class="input-group-append">
+            <button class="btn btn-outline-secondary" type="button">Button</button>
+          </div>
+        </div>
+        
+        <div class="input-group mb-3">
+          <div class="input-group-prepend">
+            <button class="btn btn-outline-success" type="button">Button</button>
+            <button class="btn btn-outline-danger" type="button">Button</button>
+          </div>
+          <input type="text" class="form-control" placeholder="" aria-label="" aria-describedby="basic-addon1">
+        </div>
+        
+        <div class="input-group">
+          <input type="text" class="form-control" placeholder="Recipient's username" aria-label="Recipient's username" aria-describedby="basic-addon2">
+          <div class="input-group-append">
+            <button class="btn btn-outline-warning" type="button">Button</button>
+            <button class="btn btn-outline-success" type="button">Button</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="input-sizing">
+        <h2 class="title">Sizing</h2>
+        <div class="input-group input-group-sm mb-3">
+          <div class="input-group-prepend">
+            <span class="input-group-text" id="inputGroup-sizing-sm">Small</span>
+          </div>
+          <input type="text" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm">
+        </div>
+        
+        <div class="input-group mb-3">
+          <div class="input-group-prepend">
+            <span class="input-group-text" id="inputGroup-sizing-default">Default</span>
+          </div>
+          <input type="text" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default">
+        </div>
+        
+        <div class="input-group input-group-lg">
+          <div class="input-group-prepend">
+            <span class="input-group-text" id="inputGroup-sizing-lg">Large</span>
+          </div>
+          <input type="text" class="form-control" aria-label="Large" aria-describedby="inputGroup-sizing-sm">
+        </div>
+      </div>
+
+
+    </div>
+</body>
+</html>
