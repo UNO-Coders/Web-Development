@@ -1,0 +1,2 @@
+loguru
+numpy # for creating sample load bearing function [dev deps]
