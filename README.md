@@ -18,6 +18,7 @@
 
 |Name     |  Twitter Handle   | 
 |---------|-----------------|
+|[Paviterjeet](https://github.com/Paviterjeet)| NA        |
 |[Akshit](https://github.com/akshitkumar450)| NA        |
 |[Dhruvil Trivedi](https://github.com/trivedidhruvil9) |     NA    |
 |[Bratin Kundu](https://github.com/bratinkundu)| NA        |
