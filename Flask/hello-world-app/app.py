@@ -13,9 +13,16 @@ app = Flask(__name__)
 # ‘/’ URL is bound with hello_world() function.
 def hello_world():
     return 'Hello World'
+
+@app.route('/hello/<user_name>')
+def say_hello(user_name:str = None):
+    if user_name:
+        return f'Hello, {user_name}'
+    else:
+        return 'Please provide a name "/hello/\{user_name\}"'
  
 # main driver function
 if __name__ == '__main__':
     # run() method of Flask class runs the application
     # on the local development server.
-    app.run()
+    app.run(debug=True)
