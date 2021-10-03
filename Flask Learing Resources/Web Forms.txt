@@ -1,0 +1,242 @@
+To handle our web forms we are going to use the Flask-WTF extension, which in turn wraps the WTForms project in a way that integrates nicely with Flask apps.
+
+Many Flask extensions require some amount of configuration, so we are going to setup a configuration file inside our root microblog folder so that it is easily accessible if it needs to be edited. Here is what we will start with (file config.py):
+
+WTF_CSRF_ENABLED = True
+SECRET_KEY = 'you-will-never-guess'
+Pretty simple, it's just two settings that our Flask-WTF extension needs. The WTF_CSRF_ENABLED setting activates the cross-site request forgery prevention (note that this setting is enabled by default in current versions of Flask-WTF). In most cases you want to have this option enabled as it makes your app more secure.
+
+The SECRET_KEY setting is only needed when CSRF is enabled, and is used to create a cryptographic token that is used to validate a form. When you write your own apps make sure to set the secret key to something that is difficult to guess.
+
+Now that we have our config file we need to tell Flask to read it and use it. We can do this right after the Flask app object is created, as follows (file app/__init__.py):
+
+from flask import Flask
+
+app = Flask(__name__)
+app.config.from_object('config')
+
+from app import views
+The user login form
+Web forms are represented in Flask-WTF as classes, subclassed from base class Form. A form subclass simply defines the fields of the form as class variables.
+
+Now we will create a login form that users will use to identify with the system. The login mechanism that we will support in our app is not the standard username/password type, we will have our users login using their OpenID. OpenIDs have the benefit that the authentication is done by the provider of the OpenID, so we don't have to validate passwords, which makes our site more secure to our users.
+
+The OpenID login only requires one string, the so called OpenID. We will also throw a 'remember me' checkbox in the form, so that users can choose to have a cookie installed in their browsers that remembers their login when they come back.
+
+Let's write our first form (file app/forms.py):
+
+from flask_wtf import Form
+from wtforms import StringField, BooleanField
+from wtforms.validators import DataRequired
+
+class LoginForm(Form):
+    openid = StringField('openid', validators=[DataRequired()])
+    remember_me = BooleanField('remember_me', default=False)
+I believe the class is pretty much self-explanatory. We imported the Form class, and the two form field classes that we need, StringField and BooleanField.
+
+The DataRequired import is a validator, a function that can be attached to a field to perform validation on the data submitted by the user. The DataRequired validator simply checks that the field is not submitted empty. There are many more validators included with Flask-WTF, we will use some more in the future.
+
+Form templates
+We will also need a template that contains the HTML that produces the form. The good news is that the LoginForm class that we just created knows how to render form fields as HTML, so we just need to concentrate on the layout. Here is our login template (file app/templates/login.html):
+
+<!-- extend from base layout -->
+{% extends "base.html" %}
+
+{% block content %}
+  <h1>Sign In</h1>
+  <form action="" method="post" name="login">
+      {{ form.hidden_tag() }}
+      <p>
+          Please enter your OpenID:<br>
+          {{ form.openid(size=80) }}<br>
+      </p>
+      <p>{{ form.remember_me }} Remember Me</p>
+      <p><input type="submit" value="Sign In"></p>
+  </form>
+{% endblock %}
+Note that in this template we are reusing the base.html template through the extends template inheritance statement. We will actually do this with all our templates, to ensure a consistent layout across all pages.
+
+There are a few interesting differences between a regular HTML form and our template. This template expects a form object instantiated from the form class we just defined stored in a template argument named form. We will take care of sending this template argument to the template next, when we write the view function that renders this template.
+
+The form.hidden_tag() template argument will get replaced with a hidden field that implements the CSRF prevention that we enabled in the configuration. This field needs to be in all your forms if you have CSRF enabled. The good news is that Flask-WTF handles it for us, we just need to make sure it is included in the form.
+
+The actual fields of our form are rendered by the field objects, we just need to refer to a {{form.field_name}} template argument in the place where each field should be inserted. Some fields can take arguments. In our case, we are asking the text field to generate our openid field with a width of 80 characters.
+
+Since we have not defined the submit button in the form class we have to define it as a regular field. The submit field does not carry any data so it doesn't need to be defined in the form class.
+
+Form views
+The final step before we can see our form is to code a view function that renders the template.
+
+This is actually quite simple since we just need to pass a form object to the template. Here is our new view function (file app/views.py):
+
+from flask import render_template, flash, redirect
+from app import app
+from .forms import LoginForm
+
+# index view function suppressed for brevity
+
+@app.route('/login', methods=['GET', 'POST'])
+def login():
+    form = LoginForm()
+    return render_template('login.html', 
+                           title='Sign In',
+                           form=form)
+So basically, we have imported our LoginForm class, instantiated an object from it, and sent it down to the template. This is all that is required to get form fields rendered.
+
+Let's ignore for now the flash and redirect imports. We'll use them a bit later.
+
+The only other thing that is new here is the methods argument in the route decorator. This tells Flask that this view function accepts GET and POST requests. Without this the view will only accept GET requests. We will want to receive the POST requests, these are the ones that will bring in the form data entered by the user.
+
+At this point you can try the app and see the form in your web browser. After you start the application you will want to open http://localhost:5000/login in your web browser, as this is the route we have associated with the login view function.
+
+We have not coded the part that accepts data yet, so pressing the submit button will not have any effect at this time.
+
+Receiving form data
+Another area where Flask-WTF makes our job really easy is in the handling of the submitted form data. Here is an updated version of our login view function that validates and stores the form data (file app/views.py):
+
+@app.route('/login', methods=['GET', 'POST'])
+def login():
+    form = LoginForm()
+    if form.validate_on_submit():
+        flash('Login requested for OpenID="%s", remember_me=%s' %
+              (form.openid.data, str(form.remember_me.data)))
+        return redirect('/index')
+    return render_template('login.html', 
+                           title='Sign In',
+                           form=form)
+The validate_on_submit method does all the form processing work. If you call it when the form is being presented to the user (i.e. before the user got a chance to enter data on it) then it will return False, so in that case you know that you have to render the template.
+
+When validate_on_submit is called as part of a form submission request, it will gather all the data, run all the validators attached to fields, and if everything is all right it will return True, indicating that the data is valid and can be processed. This is your indication that this data is safe to incorporate into the application.
+
+If at least one field fails validation then the function will return False and that will cause the form to be rendered back to the user, and this will give the user a chance to correct any mistakes. We will see later how to show an error message when validation fails.
+
+When validate_on_submit returns True our login view function calls two new functions, imported from Flask. The flash function is a quick way to show a message on the next page presented to the user. In this case we will use it for debugging, since we don't have all the infrastructure necessary to log in users yet, we will instead just display a message that shows the submitted data. The flash function is also extremely useful on production servers to provide feedback to the user regarding an action.
+
+The flashed messages will not appear automatically in our page, our templates need to display the messages in a way that works for the site layout. We will add these messages to the base template, so that all our templates inherit this functionality. This is the updated base template (file app/templates/base.html):
+
+<html>
+  <head>
+    {% if title %}
+    <title>{{ title }} - microblog</title>
+    {% else %}
+    <title>microblog</title>
+    {% endif %}
+  </head>
+  <body>
+    <div>Microblog: <a href="/index">Home</a></div>
+    <hr>
+    {% with messages = get_flashed_messages() %}
+      {% if messages %}
+        <ul>
+        {% for message in messages %}
+            <li>{{ message }} </li>
+        {% endfor %}
+        </ul>
+      {% endif %}
+    {% endwith %}
+    {% block content %}{% endblock %}
+  </body>
+</html>
+The technique to display the flashed message is hopefully self-explanatory. One interesting property of flash messages is that once they are requested through the get_flashed_messages function they are removed from the message list, so these messages appear in the first page requested by the user after the flash function is called, and then they disappear.
+
+The other new function we used in our login view is redirect. This function tells the client web browser to navigate to a different page instead of the one requested. In our view function we use it to redirect to the index page we developed in previous chapters. Note that flashed messages will display even if a view function ends in a redirect.
+
+This is a great time to start the app and test how the form works. Make sure you try submitting the form with the openid field empty, to see how the DataRequired validator halts the submission process.
+
+Improving field validation
+With the app in its current state, forms that are submitted with invalid data will not be accepted. Instead, the form will be presented back to the user to correct. This is exactly what we want.
+
+What we are missing is an indication to the user of what is wrong with the form. Luckily, Flask-WTF also makes this an easy task.
+
+When a field fails validation Flask-WTF adds a descriptive error message to the form object. These messages are available to the template, so we just need to add a bit of logic that renders them.
+
+Here is our login template with field validation messages (file app/templates/login.html):
+
+<!-- extend base layout -->
+{% extends "base.html" %}
+
+{% block content %}
+  <h1>Sign In</h1>
+  <form action="" method="post" name="login">
+      {{ form.hidden_tag() }}
+      <p>
+          Please enter your OpenID:<br>
+          {{ form.openid(size=80) }}<br>
+          {% for error in form.openid.errors %}
+            <span style="color: red;">[{{ error }}]</span>
+          {% endfor %}<br>
+      </p>
+      <p>{{ form.remember_me }} Remember Me</p>
+      <p><input type="submit" value="Sign In"></p>
+  </form>
+{% endblock %}
+The only change we've made is to add a for loop that renders any messages added by the validators below the openid field. As a general rule, any fields that have validators attached will have errors added under form.field_name.errors. In our case we use form.openid.errors. We display these messages in a red style to call the user's attention.
+
+Dealing with OpenIDs
+In practice, we will find that a lot of people don't even know that they already have a few OpenIDs. It isn't that well known that a number of major service providers on the Internet support OpenID authentication for their members. For example, if you have an account with Google, you have an OpenID with them. Likewise with Yahoo, AOL, Flickr and many other providers. (Update: Google is shutting down their OpenID service on April 15 2015).
+
+To make it easier for users to login to our site with one of these commonly available OpenIDs, we will add links to a short list of them, so that the user does not have to type the OpenID by hand.
+
+We will start by defining the list of OpenID providers that we want to present. We can do this in our config file (file config.py):
+
+WTF_CSRF_ENABLED = True
+SECRET_KEY = 'you-will-never-guess'
+
+OPENID_PROVIDERS = [
+    {'name': 'Google', 'url': 'https://www.google.com/accounts/o8/id'},
+    {'name': 'Yahoo', 'url': 'https://me.yahoo.com'},
+    {'name': 'AOL', 'url': 'http://openid.aol.com/<username>'},
+    {'name': 'Flickr', 'url': 'http://www.flickr.com/<username>'},
+    {'name': 'MyOpenID', 'url': 'https://www.myopenid.com'}]
+Now let's see how we use this array in our login view function:
+
+@app.route('/login', methods=['GET', 'POST'])
+def login():
+    form = LoginForm()
+    if form.validate_on_submit():
+        flash('Login requested for OpenID="%s", remember_me=%s' %
+              (form.openid.data, str(form.remember_me.data)))
+        return redirect('/index')
+    return render_template('login.html', 
+                           title='Sign In',
+                           form=form,
+                           providers=app.config['OPENID_PROVIDERS'])
+Here we grab the configuration by looking it up in app.config with its key. The array is then added to the render_template call as a template argument.
+
+As I'm sure you guessed, we have one more step to be done with this. We now need to specify how we would like to render these provider links in our login template (file app/templates/login.html):
+
+<!-- extend base layout -->
+{% extends "base.html" %}
+
+{% block content %}
+<script type="text/javascript">
+function set_openid(openid, pr)
+{
+    u = openid.search('<username>')
+    if (u != -1) {
+        // openid requires username
+        user = prompt('Enter your ' + pr + ' username:')
+        openid = openid.substr(0, u) + user
+    }
+    form = document.forms['login'];
+    form.elements['openid'].value = openid
+}
+</script>
+<h1>Sign In</h1>
+<form action="" method="post" name="login">
+    {{ form.hidden_tag() }}
+    <p>
+        Please enter your OpenID, or select one of the providers below:<br>
+        {{ form.openid(size=80) }}
+        {% for error in form.openid.errors %}
+          <span style="color: red;">[{{error}}]</span>
+        {% endfor %}<br>
+        |{% for pr in providers %}
+          <a href="javascript:set_openid('{{ pr.url }}', '{{ pr.name }}');">{{ pr.name }}</a> |
+        {% endfor %}
+    </p>
+    <p>{{ form.remember_me }} Remember Me</p>
+    <p><input type="submit" value="Sign In"></p>
+</form>
+{% endblock %}
+The template got somewhat long with this change. Some OpenIDs include the user's username, so for those we have to have a bit of javascript magic that prompts the user for the username and then composes the OpenID with it. When the user clicks on an OpenID provider link and (optionally) enters the username, the OpenID for that provider is inserted in the text field.

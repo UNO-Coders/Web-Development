@@ -1,0 +1,163 @@
+The login view function
+Next let's update our login view function (file app/views.py):
+
+from flask import render_template, flash, redirect, session, url_for, request, g
+from flask_login import login_user, logout_user, current_user, login_required
+from app import app, db, lm, oid
+from .forms import LoginForm
+from .models import User
+
+@app.route('/login', methods=['GET', 'POST'])
+@oid.loginhandler
+def login():
+    if g.user is not None and g.user.is_authenticated:
+        return redirect(url_for('index'))
+    form = LoginForm()
+    if form.validate_on_submit():
+        session['remember_me'] = form.remember_me.data
+        return oid.try_login(form.openid.data, ask_for=['nickname', 'email'])
+    return render_template('login.html', 
+                           title='Sign In',
+                           form=form,
+                           providers=app.config['OPENID_PROVIDERS'])
+Notice we have imported several new modules, some of which we will use later.
+
+The changes from our previous version are very small. We have added a new decorator to our view function. The oid.loginhandler tells Flask-OpenID that this is our login view function.
+
+At the top of the function body we check if g.user is set to an authenticated user, and in that case we redirect to the index page. The idea here is that if there is a logged in user already we will not do a second login on top.
+
+The g global is setup by Flask as a place to store and share data during the life of a request. As I'm sure you guessed by now, we will be storing the logged in user here.
+
+The url_for function that we used in the redirect call is defined by Flask as a clean way to obtain the URL for a given view function. If you want to redirect to the index page you may very well use redirect('/index'), but there are very good reasons to let Flask build URLs for you.
+
+The code that runs when we get a data back from the login form is also new. Here we do two things. First we store the value of the remember_me boolean in the flask session, not to be confused with the db.session from Flask-SQLAlchemy. We've seen that the flask.g object stores and shares data though the life of a request. The flask.session provides a much more complex service along those lines. Once data is stored in the session object it will be available during that request and any future requests made by the same client. Data remains in the session until explicitly removed. To be able to do this, Flask keeps a different session container for each client of our application.
+
+The oid.try_login call in the following line is the call that triggers the user authentication through Flask-OpenID. The function takes two arguments, the openid given by the user in the web form and a list of data items that we want from the OpenID provider. Since we defined our User class to include nickname and email, those are the items we are going to ask for.
+
+The OpenID authentication happens asynchronously. Flask-OpenID will call a function that is registered with the oid.after_login decorator if the authentication is successful. If the authentication fails the user will be taken back to the login page.
+
+The Flask-OpenID login callback
+Here is our implementation of the after_login function (file app/views.py):
+
+@oid.after_login
+def after_login(resp):
+    if resp.email is None or resp.email == "":
+        flash('Invalid login. Please try again.')
+        return redirect(url_for('login'))
+    user = User.query.filter_by(email=resp.email).first()
+    if user is None:
+        nickname = resp.nickname
+        if nickname is None or nickname == "":
+            nickname = resp.email.split('@')[0]
+        user = User(nickname=nickname, email=resp.email)
+        db.session.add(user)
+        db.session.commit()
+    remember_me = False
+    if 'remember_me' in session:
+        remember_me = session['remember_me']
+        session.pop('remember_me', None)
+    login_user(user, remember = remember_me)
+    return redirect(request.args.get('next') or url_for('index'))
+The resp argument passed to the after_login function contains information returned by the OpenID provider.
+
+The first if statement is just for validation. We require a valid email, so if an email was not provided we cannot log the user in.
+
+Next, we search our database for the email provided. If the email is not found we consider this a new user, so we add a new user to our database, pretty much as we have learned in the previous chapter. Note that we handle the case of a missing nickname, since some OpenID providers may not have that information.
+
+After that we load the remember_me value from the Flask session, this is the boolean that we stored in the login view function, if it is available.
+
+Then we call Flask-Login's login_user function, to register this is a valid login.
+
+Finally, in the last line we redirect to the next page, or the index page if a next page was not provided in the request.
+
+The concept of the next page is simple. Let's say you navigate to a page that requires you to be logged in, but you aren't just yet. In Flask-Login you can protect views against non logged in users by adding the login_required decorator. If the user tries to access one of the affected URLs then it will be redirected to the login page automatically. Flask-Login will store the original URL as the next page, and it is up to us to return the user to this page once the login process completed.
+
+For this to work Flask-Login needs to know what view logs users in. We can configure this in the app's module initializer (file app/__init__.py):
+
+lm = LoginManager()
+lm.init_app(app)
+lm.login_view = 'login'
+The g.user global
+If you were paying attention, you will remember that in the login view function we check g.user to determine if a user is already logged in. To implement this we will use the before_request event from Flask. Any functions that are decorated with before_request will run before the view function each time a request is received. So this is the right place to setup our g.user variable (file app/views.py):
+
+@app.before_request
+def before_request():
+    g.user = current_user
+This is all it takes. The current_user global is set by Flask-Login, so we just put a copy in the g object to have better access to it. With this, all requests will have access to the logged in user, even inside templates.
+
+The index view
+In a previous chapter we left our index view function using fake objects, because at the time we did not have users or posts in our system. Well, we have users now, so let's hook that up:
+
+@app.route('/')
+@app.route('/index')
+@login_required
+def index():
+    user = g.user
+    posts = [
+        { 
+            'author': {'nickname': 'John'}, 
+            'body': 'Beautiful day in Portland!' 
+        },
+        { 
+            'author': {'nickname': 'Susan'}, 
+            'body': 'The Avengers movie was so cool!' 
+        }
+    ]
+    return render_template('index.html',
+                           title='Home',
+                           user=user,
+                           posts=posts)
+There are only two changes to this function. First, we have added the login_required decorator. This will ensure that this page is only seen by logged in users.
+
+The other change is that we pass g.user down to the template, instead of the fake object we used in the past.
+
+This is a good time to run the application.
+
+When you navigate to http://localhost:5000 you will instead get the login page. Keep in mind that to login with OpenID you have to use the OpenID URL from your provider. You can use one of the OpenID provider links below the URL text field to generate the correct URL for you.
+
+As part of the login process you will be redirected to your provider's web site, where you will authenticate and authorize the sharing of some information with our application (just the email and nickname that we requested, no passwords or other personal information will be exposed).
+
+Once the login is complete you will be taken to the index page, this time as a logged in user.
+
+Feel free to try the remember_me checkbox. With this option enabled you can close and reopen your web browser and will continue to be logged in.
+
+Logging out
+We have implemented the log in, now it's time to add the log out.
+
+The view function for logging out is extremely simple (file app/views.py):
+
+@app.route('/logout')
+def logout():
+    logout_user()
+    return redirect(url_for('index'))
+But we are also missing a link to logout in the template. We are going to put this link in the top navigation bar which is in the base layout (file app/templates/base.html):
+
+<html>
+  <head>
+    {% if title %}
+    <title>{{ title }} - microblog</title>
+    {% else %}
+    <title>microblog</title>
+    {% endif %}
+  </head>
+  <body>
+    <div>Microblog:
+        <a href="{{ url_for('index') }}">Home</a>
+        {% if g.user.is_authenticated %}
+        | <a href="{{ url_for('logout') }}">Logout</a>
+        {% endif %}
+    </div>
+    <hr>
+    {% with messages = get_flashed_messages() %}
+    {% if messages %}
+    <ul>
+    {% for message in messages %}
+        <li>{{ message }} </li>
+    {% endfor %}
+    </ul>
+    {% endif %}
+    {% endwith %}
+    {% block content %}{% endblock %}
+  </body>
+</html>
+Note how easy it is to do this. We just needed to check if we have a valid user set in g.user and if we do we just add the logout link. We have also used the opportunity to use url_for in our template.
