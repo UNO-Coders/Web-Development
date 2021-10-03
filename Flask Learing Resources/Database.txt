@@ -1,0 +1,121 @@
+The database model
+The data that we will store in our database will be represented by a collection of classes that are referred to as the database models. The ORM layer will do the translations required to map objects created from these classes into rows in the proper database table.
+
+Let's start by creating a model that will represent our users. Using the WWW SQL Designer tool, I have made the following diagram to represent our users table:
+
+users table
+
+The id field is usually in all models, and is used as the primary key. Each user in the database will be assigned a unique id value, stored in this field. Luckily this is done automatically for us, we just need to provide the id field.
+
+The nickname and email fields are defined as strings (or VARCHAR in database jargon), and their maximum lengths are specified so that the database can optimize space usage.
+
+Now that we have decided what we want our users table to look like, the job of translating that into code is pretty easy (file app/models.py):
+
+from app import db
+
+class User(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    nickname = db.Column(db.String(64), index=True, unique=True)
+    email = db.Column(db.String(120), index=True, unique=True)
+
+    def __repr__(self):
+        return '<User %r>' % (self.nickname)
+The User class that we just created contains several fields, defined as class variables. Fields are created as instances of the db.Column class, which takes the field type as an argument, plus other optional arguments that allow us, for example, to indicate which fields are unique and indexed.
+
+The __repr__ method tells Python how to print objects of this class. We will use this for debugging.
+
+Creating the database
+With the configuration and model in place we are now ready to create our database file. The SQLAlchemy-migrate package comes with command line tools and APIs to create databases in a way that allows easy updates in the future, so that is what we will use. I find the command line tools a bit awkward to use, so instead I have written my own set of little Python scripts that invoke the migration APIs.
+
+Here is a script that creates the database (file db_create.py):
+
+#!flask/bin/python
+from migrate.versioning import api
+from config import SQLALCHEMY_DATABASE_URI
+from config import SQLALCHEMY_MIGRATE_REPO
+from app import db
+import os.path
+db.create_all()
+if not os.path.exists(SQLALCHEMY_MIGRATE_REPO):
+    api.create(SQLALCHEMY_MIGRATE_REPO, 'database repository')
+    api.version_control(SQLALCHEMY_DATABASE_URI, SQLALCHEMY_MIGRATE_REPO)
+else:
+    api.version_control(SQLALCHEMY_DATABASE_URI, SQLALCHEMY_MIGRATE_REPO, api.version(SQLALCHEMY_MIGRATE_REPO))
+Note how this script is completely generic. All the application specific pathnames are imported from the config file. When you start your own project you can just copy the script to the new app's directory and it will work right away.
+
+To create the database you just need to execute this script (remember that if you are on Windows the command is slightly different):
+
+./db_create.py
+After you run the command you will have a new app.db file. This is an empty sqlite database, created from the start to support migrations. You will also have a db_repository directory with some files inside. This is the place where SQLAlchemy-migrate stores its data files. Note that we do not regenerate the repository if it already exists. This will allow us to recreate the database while leaving the existing repository if we need to.
+
+Our first migration
+Now that we have defined our model, we can incorporate it into our database. We will consider any changes to the structure of the app database a migration, so this is our first, which will take us from an empty database to a database that can store users.
+
+To generate a migration I use another little Python helper script (file db_migrate.py):
+
+#!flask/bin/python
+import imp
+from migrate.versioning import api
+from app import db
+from config import SQLALCHEMY_DATABASE_URI
+from config import SQLALCHEMY_MIGRATE_REPO
+v = api.db_version(SQLALCHEMY_DATABASE_URI, SQLALCHEMY_MIGRATE_REPO)
+migration = SQLALCHEMY_MIGRATE_REPO + ('/versions/%03d_migration.py' % (v+1))
+tmp_module = imp.new_module('old_model')
+old_model = api.create_model(SQLALCHEMY_DATABASE_URI, SQLALCHEMY_MIGRATE_REPO)
+exec(old_model, tmp_module.__dict__)
+script = api.make_update_script_for_model(SQLALCHEMY_DATABASE_URI, SQLALCHEMY_MIGRATE_REPO, tmp_module.meta, db.metadata)
+open(migration, "wt").write(script)
+api.upgrade(SQLALCHEMY_DATABASE_URI, SQLALCHEMY_MIGRATE_REPO)
+v = api.db_version(SQLALCHEMY_DATABASE_URI, SQLALCHEMY_MIGRATE_REPO)
+print('New migration saved as ' + migration)
+print('Current database version: ' + str(v))
+The script looks complicated, but it doesn't really do much. The way SQLAlchemy-migrate creates a migration is by comparing the structure of the database (obtained in our case from file app.db) against the structure of our models (obtained from file app/models.py). The differences between the two are recorded as a migration script inside the migration repository. The migration script knows how to apply a migration or undo it, so it is always possible to upgrade or downgrade a database format.
+
+While I have never had problems generating migrations automatically with the above script, I could see that sometimes it would be hard to determine what changes were made just by comparing the old and the new format. To make it easy for SQLAlchemy-migrate to determine the changes I never rename existing fields, I limit my changes to adding or removing models or fields, or changing types of existing fields. And I always review the generated migration script to make sure it is right.
+
+It goes without saying that you should never attempt to migrate your database without having a backup, in case something goes wrong. Also never run a migration for the first time on a production database, always make sure the migration works correctly on a development database.
+
+So let's go ahead and record our migration:
+
+$ ./db_migrate.py
+And the output from the script will be:
+
+New migration saved as db_repository/versions/001_migration.py
+Current database version: 1
+The script shows where the migration script was stored, and also prints the current database version. The empty database version was version 0, after we migrated to include users we are at version 1.
+
+Database upgrades and downgrades
+By now you may be wondering why is it that important to go through the extra hassle of recording database migrations.
+
+Imagine that you have your application in your development machine, and also have a copy deployed to a production server that is online and in use.
+
+Let's say that for the next release of your app you have to introduce a change to your models, for example a new table needs to be added. Without migrations you would need to figure out how to change the format of your database, both in your development machine and then again in your server, and this could be a lot of work.
+
+If you have database migration support, then when you are ready to release the new version of the app to your production server you just need to record a new migration, copy the migration scripts to your production server and run a simple script that applies the changes for you. The database upgrade can be done with this little Python script (file db_upgrade.py):
+
+#!flask/bin/python
+from migrate.versioning import api
+from config import SQLALCHEMY_DATABASE_URI
+from config import SQLALCHEMY_MIGRATE_REPO
+api.upgrade(SQLALCHEMY_DATABASE_URI, SQLALCHEMY_MIGRATE_REPO)
+v = api.db_version(SQLALCHEMY_DATABASE_URI, SQLALCHEMY_MIGRATE_REPO)
+print('Current database version: ' + str(v))
+When you run the above script, the database will be upgraded to the latest revision, by applying the migration scripts stored in the database repository.
+
+It is not a common need to have to downgrade a database to an old format, but just in case, SQLAlchemy-migrate supports this as well (file db_downgrade.py):
+
+#!flask/bin/python
+from migrate.versioning import api
+from config import SQLALCHEMY_DATABASE_URI
+from config import SQLALCHEMY_MIGRATE_REPO
+v = api.db_version(SQLALCHEMY_DATABASE_URI, SQLALCHEMY_MIGRATE_REPO)
+api.downgrade(SQLALCHEMY_DATABASE_URI, SQLALCHEMY_MIGRATE_REPO, v - 1)
+v = api.db_version(SQLALCHEMY_DATABASE_URI, SQLALCHEMY_MIGRATE_REPO)
+print('Current database version: ' + str(v))
+This script will downgrade the database one revision. You can run it multiple times to downgrade several revisions.
+
+Database relationships
+Relational databases are good at storing relations between data items. Consider the case of a user writing a blog post. The user will have a record in the users table, and the post will have a record in the posts table. The most efficient way to record who wrote a given post is to link the two related records.
+
+Once a link between a user and a post is established there are two types of queries that we may need to use. The most trivial one is when you have a blog post and need to know what user wrote it. A more complex query is the reverse of this one. If you have a user, you may want to know all the posts that the user wrote. Flask-SQLAlchemy will help us with both types of queries.
