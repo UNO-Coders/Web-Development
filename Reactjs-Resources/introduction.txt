@@ -1,0 +1,23 @@
+What is ReactJS?
+ReactJS is an open-source front-end JavaScript library for building user interfaces. ReactJS is maintained by Facebook and a community of individual developers and companies. It is widely used as a base in building single-page websites and mobile applications. It is very easy to use, and it allows users to create reusable UI components.
+
+Features of ReactJS
+JSX : JSX is an extension to javascript. Though it is not mandatory to use JSX in react, it is one of the good features and easy to use.
+
+Components: Components are like pure javascript functions that help make the code easy by splitting the logic into reusable independent code. We can use components as functions and components as classes. Components also have a state, props which makes life easy. Inside a class, the state of each of the props is maintained.
+
+Virtual DOM: React creates a virtual dom, i.e., in-memory data -structure cache. Only the final changes of DOM has later updated in the browsers DOM.
+
+Javascript Expressions: JS expressions can be used in the jsx files using curly brackets, for example {}.
+
+Advantages of ReactJS :
+
+ReactJS uses virtual dom that makes use of in-memory data-structure cache, and only the final changes are updated in browsers dom. This makes the app faster.
+You can create components of your choice by using the react component feature. The components can be reused and also helpful in code maintenance.
+Reactjs is an open-source javascript library, so it is easy to start with.
+ReactJS has become very popular in a short span and maintained by Facebook and Instagram. It is used by many famous companies like Apple, Netflix, etc.
+Facebook maintains ReactJS, the library, so it is well maintained and kept updated.
+ReactJS can be used to develop rich UI for both desktop and mobile apps.
+Easy to debug and test as most of the coding is done in Javascript rather than on Html.
+
+
