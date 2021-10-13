@@ -1,0 +1,169 @@
+<!-- showcasing bootstrap carousel -->
+<!-- types of bootstrap carousels available to use in your next project -->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <title>Bootstrap Carousel</title>
+</head>
+
+<body>
+
+    <section>
+        <!-- Carousel 1 -->
+        <div class="main_heading">
+            <h1 class="text-center mt-4">Bootstrap Carousel</h1>
+        </div>
+        <div>
+            <h3 class="text-center mt-5 pt-2">Carousel no. 1 slides only</h3>
+            <p class="text-center"><em>Here is a simple Carousel with only 2 slides which toggle automatically after a
+                    time & it has <strong>no button</strong> to Control slides </em> </p>
+        </div>
+        <div id="carouselExampleSlidesOnly" class="carousel slide" data-bs-ride="carousel">
+            <div class="carousel-inner">
+                <div class="carousel-item active  ">
+                    <img src="images/slide1.png" class="d-block w-50 mx-auto" alt="...">
+                </div>
+                <div class="carousel-item   ">
+                    <img src="images/slide2.png" class="d-block w-50 mx-auto" alt="...">
+                </div>
+
+            </div>
+        </div>
+    </section>
+    <section class="mb-5">
+        <!-- Carousel 2 -->
+        <div>
+            <h3 class="text-center mt-5 pt-2">Carousel no. 2 with controls</h3>
+            <p class="text-center"><em>Here is a simple Carousel with only 2 slides & <strong>Control buttons</strong>
+                    on both sides to toggle
+                    between slides</em> </p>
+        </div>
+        <div id="carouselExampleControls" class="carousel slide " data-interval="false" data-bs-ride="carousel">
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <img src="images/slide1.png" class="d-block w-50 mx-auto" alt="...">
+                </div>
+                <div class="carousel-item">
+                    <img src="images/slide2.png" class="d-block w-50 mx-auto" alt="...">
+                </div>
+
+            </div>
+            <button class="carousel-control-prev bg-dark" type="button" data-bs-target="#carouselExampleControls"
+                data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next text-warning bg-dark" type="button"
+                data-bs-target="#carouselExampleControls" data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+            </button>
+        </div>
+    </section>
+
+    <section class="mb-5">
+        <!-- carousel 3 -->
+
+        <div>
+            <h3 class="text-center mt-10 pt-2">Carousel no. 3 with controls & a slide indicators</h3>
+            <p class="text-center"><em>Here is a simple Carousel with only 2 slides & <strong>Control buttons & a slide
+                        indicator on the bottom of the slide</strong>
+                </em> </p>
+
+        </div>
+        <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
+            <div class="carousel-indicators">
+                <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active"
+                    aria-current="true" aria-label="Slide 1"></button>
+                <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1"
+                    aria-label="Slide 2"></button>
+
+            </div>
+            <div class="carousel-inner ">
+                <div class="carousel-item active ">
+                    <img src="images/slide1.png" class="d-block w-50 mx-auto" alt="...">
+                </div>
+                <div class="carousel-item">
+                    <img src="images/slide2.png" class="d-block w-50 mx-auto" alt="...">
+                </div>
+
+            </div>
+            <button class="carousel-control-prev bg-dark" type="button" data-bs-target="#carouselExampleIndicators"
+                data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next bg-dark" type="button" data-bs-target="#carouselExampleIndicators"
+                data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+            </button>
+        </div>
+    </section>
+
+    <section class="mb-5">
+        <!-- carousel 4 -->
+        <div>
+            <h3 class="text-center mt-10 pt-2">Carousel no. 4 with controls & a slide indicators and Captions </h3>
+            <p class="text-center"><em>Here is a simple Carousel with only 2 slides & <strong>Control buttons & a slide
+                        indicator and captions on the bottom of the slide</strong>
+                </em> </p>
+
+        </div>
+        <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel">
+            <div class="carousel-indicators">
+                <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1" class="active"
+                    aria-current="true" aria-label="Slide 1"></button>
+                <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2"
+                    aria-label="Slide 2"></button>
+
+            </div>
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <img src="images/slide1.png" class="d-block w-50 mx-auto" alt="slide1">
+                    <div class="carousel-caption d-none d-md-block">
+                        <h5>First slide label</h5>
+                        <p>Some representative placeholder content for the first slide.</p>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <img src="images/slide2.png" class="d-block w-50 mx-auto" alt="slide2">
+                    <div class="carousel-caption d-none d-md-block">
+                        <h5>Second slide label</h5>
+                        <p>Some representative placeholder content for the second slide.</p>
+                    </div>
+
+                </div>
+            </div>
+            <button class="carousel-control-prev bg-dark" type="button" data-bs-target="#carouselExampleCaptions"
+                data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next bg-dark" type="button" data-bs-target="#carouselExampleCaptions"
+                data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+            </button>
+        </div>
+
+    </section>
+
+
+
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>
