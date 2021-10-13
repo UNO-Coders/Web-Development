@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Text formatting</title>
+        
+        <style>
+        .color{
+            color:gray;
+       /* you can also provide value in hex code or rgb */
+        }
+        .bold {
+            font-weight:bolder;
+            /* other values - lighter , bold */
+        }
+        .family {
+            font-family:serif;
+            /* some other values - monospace , sans-serif */
+        }
+        .style{
+        font-style:italic;
+        /* other values - oblique , normal (default) */
+        }
+        .size{
+        font-size:large;
+        /* other values - small , medium , xlarge . or you can also provide value in pixels */
+        }
+        .align{
+        text-align:right;
+        /* other values - left , center */
+        }
+        .valign{
+        vertical-align:top;
+        /* Other values - middle , bottom */
+        }
+        .decoration{
+        text-decoration:underline;
+        /* other values - overline , line-through , none , inheirt */
+        }
+        .shadow{
+        color:red;
+        text-shadow:5px 2px 4px grey;
+        /* text-shadow:X-cord Y-cord Blur-radius color-of-shadow; */
+        }
+        .transform{
+        text-transform:uppercase;
+        /* other value - lowercase */
+        }
+        </style>
+    </head>
+    <body>
+        <p class="color">Lorem ipsum dolor sit amet</p>
+        <p class="bold">Lorem ipsum dolor sit amet</p>
+        <p class="family">Lorem ipsum dolor sit amet</p>
+        <p class="style">Lorem ipsum dolor sit amet</p>
+        <p class="size">Lorem ipsum dolor sit amet</p>
+        <p class="align">Lorem ipsum dolor sit amet</p>
+        <p class="valign">Lorem ipsum dolor sit amet</p>
+        <p class="decoration">Lorem ipsum dolor sit amet</p>
+        <p class="shadow">Lorem ipsum dolor sit amet</p>
+        <p class="transform">Lorem ipsum dolor sit amet</p>
+    </body>
+</html>
