@@ -1,0 +1,6 @@
+Flask
+Flask-Cors
+Flask-SSE
+APScheduler
+redis
+Faker
