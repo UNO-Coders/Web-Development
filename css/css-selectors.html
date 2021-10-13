@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>CSS Selectors</title>
+      
+      <style>
+        /* To target all h1 tags */
+        h1 { color: orange; }
+        
+        /* To target all paragraph tags */
+        p {
+     color: red;
+     font-size:130%;
+      }
+
+        /* id selectors allow you to style an HTML element that has an id attribute, regardless of their position in the document tree. */
+        #intro {
+    color: blue;
+    background-color: gray;
+     }
+        /* class selectors */
+        .info {
+          font-size:100px;
+          }
+        
+        /* These selectors are used to select elements that are descendants of another element. When selecting levels, you can select as many levels deep as you need to. 
+
+For example, to target only <em> elements in the first paragraph of the "contact" section */
+        #contact .first em {
+    color: pink; 
+    background-color:gray;
+}
+      </style>
+    </head>
+    <body>
+        <h1>A Sample Heading</h1>
+      
+        <p> This is a paragraph </p>
+      
+      <div id="intro">
+    <p> This paragraph is in the intro section.</p>
+      </div>
+      
+      <div class="info">
+        info section
+        </div>
+      
+      <div id="contact">
+    <p class="first">This is a <em> paragraph.</em></p>
+    </body>
+</html>
