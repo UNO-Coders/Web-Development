@@ -342,6 +342,8 @@ If they meet the requirements above, feel free to create a PR. Happy Hacking! :s
 - [UI Kit](https://getuikit.com/) ![Free](https://img.shields.io/badge/-Free-brightgreen)
 - [Unsemantic](https://unsemantic.com/) ![Free](https://img.shields.io/badge/-Free-brightgreen)
 - [Vital CSS](https://vitalcss.com/components/) ![Free](https://img.shields.io/badge/-Free-brightgreen)
+- [Windi CSS](https://windicss.org/) ![Free](https://img.shields.io/badge/-Free-brightgreen)
+
 
 **[⬆ back to top](#table-of-contents)**
 
@@ -440,6 +442,7 @@ If they meet the requirements above, feel free to create a PR. Happy Hacking! :s
 ## Animation Frameworks
 
 - [Animate CSS](https://daneden.github.io/animate.css/) - Choose, try out and get the CSS-Code for different animation types (over 70) ![Free](https://img.shields.io/badge/-Free-brightgreen)
+- [Anime JS](https://animejs.com/) - JavaScript animation engine. A lightweight JavaScript animation library with a simple, yet powerful API ![Free](https://img.shields.io/badge/-Free-brightgreen)
 - [Bounce JS](http://bouncejs.com/) - Tool and JS Library, creating CSS3 powered animations(adjustments possible) & export CSS code ![Free](https://img.shields.io/badge/-Free-brightgreen)
 - [Magic Animations](https://www.minimamente.com/example/magic_animations/) - Showcase of different animations with link to GitHub repo ![Free](https://img.shields.io/badge/-Free-brightgreen)
 - [Particles JS](https://vincentgarreau.com/particles.js/) 👍 ![Free](https://img.shields.io/badge/-Free-brightgreen)
