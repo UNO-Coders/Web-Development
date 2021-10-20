@@ -153,7 +153,7 @@ If they meet the requirements above, feel free to create a PR. Happy Hacking! :s
 - [Brad Hussey](https://www.youtube.com/user/hussey17) - Tutorials on Bootstrap, SASS, jQuery, PHP, Freelancing ![Free](https://img.shields.io/badge/-Free-brightgreen)
 - [CSS Tricks](https://www.youtube.com/channel/UCADyUOnhyEoQqrw_RrsGleA) - YouTube channel of well-known web design and development blog CSS Tricks by Chris Coyier. ![Free](https://img.shields.io/badge/-Free-brightgreen)
 - [Coder’s Guide](https://www.youtube.com/user/CodersGuide/) - Tutorials on HTML, CSS, JavaScript, Bootstrap ![Free](https://img.shields.io/badge/-Free-brightgreen)
-- [Code with Ania Kubów](https://www.youtube.com/c/AniaKubów) - Tutorials on JavaScript, React and GraphLQL ![Free](https://img.shields.io/badge/-Free-brightgreen)
+- [Code with Ania Kubów](https://www.youtube.com/c/AniaKubów) - Tutorials on JavaScript, React and GraphQL ![Free](https://img.shields.io/badge/-Free-brightgreen)
 - [Derek Banas](https://www.youtube.com/user/derekbanas) - Tutorials on C#, Visual Basic, Django, Python, NodeJS, AngularJS, MongoDB, jQuery, JavaScript, CSS, Ruby on Rails, Java, SQLite, Android, HTML, PHP, Objective C ![Free](https://img.shields.io/badge/-Free-brightgreen)
 - [DevTips](https://www.youtube.com/user/DevTipsForDesigners) - Tutorials on HTML5, CSS, SASS, Bootstrap, Foundation, jQuery, Ruby on Rails, GitHub. ![Free](https://img.shields.io/badge/-Free-brightgreen)
 - [Elzero Web School](https://www.youtube.com/user/OsamaElzero/) - **Arabic only** ![Free](https://img.shields.io/badge/-Free-brightgreen)
