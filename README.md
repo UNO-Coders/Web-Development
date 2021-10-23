@@ -1,4 +1,3 @@
-[![Say Thanks!](https://img.shields.io/badge/Say%20Thanks-!-1EAEDB.svg)](https://saythanks.io/to/bachittarjeet%40gmail.com)
 [![contributions welcome](https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat)](https://github.com/Banglorians/Web-Development/issues)
 ![](https://visitor-badge.laobi.icu/badge?page_id=Banglorians/Web-Development)
 [![GitHub issues](https://img.shields.io/github/issues/Banglorians/Web-Development.svg)](https://github.com/Banglorians/Web-Development/issues)
@@ -16,15 +15,41 @@
 
 #### Members:
 
-|Name     |  Twitter Handle   | 
-|---------|-----------------|
-|[Paviterjeet](https://github.com/Paviterjeet)| NA        |
-|[Akshit](https://github.com/akshitkumar450)| NA        |
-|[Dhruvil Trivedi](https://github.com/trivedidhruvil9) |     NA    |
-|[Bratin Kundu](https://github.com/bratinkundu)| NA        |
-|[Muhammad Abdullah ](https://github.com/abdullah2205) |     NA    |
-|[Parth Saini](https://github.com/ParthSaini-2006)| NA        |
-|[Snehal](https://github.com/snehal2841) |     NA    |
+<img src="https://avatars.githubusercontent.com/u/8956546?v=4" width="9%"></img>
+<img src="https://avatars.githubusercontent.com/u/21127788?v=4" width="9%"></img>
+<img src="https://avatars.githubusercontent.com/u/25298153?v=4" width="9%"></img>
+<img src="https://avatars.githubusercontent.com/u/39666523?v=4" width="9%"></img>
+<img src="https://avatars.githubusercontent.com/u/54998045?v=4" width="9%"></img>
+<img src="https://avatars.githubusercontent.com/u/62460644?v=4" width="9%"></img>
+<img src="https://avatars.githubusercontent.com/u/21294656?v=4" width="9%"></img>
+<img src="https://avatars.githubusercontent.com/u/61465886?v=4" width="9%"></img>
+<img src="https://avatars.githubusercontent.com/u/56179904?v=4" width="9%"></img>
+<img src="https://avatars.githubusercontent.com/u/44284858?v=4" width="9%"></img>
+<img src="https://avatars.githubusercontent.com/u/76793133?v=4" width="9%"></img>
+<img src="https://avatars.githubusercontent.com/u/26843282?v=4" width="9%"></img>
+<img src="https://avatars.githubusercontent.com/u/63839657?v=4" width="9%"></img>
+<img src="https://avatars.githubusercontent.com/u/61876990?v=4" width="9%"></img>
+<img src="https://avatars.githubusercontent.com/u/58397197?v=4" width="9%"></img>
+<img src="https://avatars.githubusercontent.com/u/40743787?v=4" width="9%"></img>
+<img src="https://avatars.githubusercontent.com/u/36078208?v=4" width="9%"></img>
+<img src="https://avatars.githubusercontent.com/u/23063272?v=4" width="9%"></img>
+<img src="https://avatars.githubusercontent.com/u/27768485?v=4" width="9%"></img>
+<img src="https://avatars.githubusercontent.com/u/53695727?v=4" width="9%"></img>
+<img src="https://avatars.githubusercontent.com/u/59509659?v=4" width="9%"></img>
+<img src="https://avatars.githubusercontent.com/u/67732961?v=4" width="9%"></img>
+<img src="https://avatars.githubusercontent.com/u/72297215?v=4" width="9%"></img>
+<img src="https://avatars.githubusercontent.com/u/88556769?v=4" width="9%"></img>
+<img src="https://avatars.githubusercontent.com/u/71723823?v=4" width="9%"></img>
+<img src="https://avatars.githubusercontent.com/u/66167434?v=4" width="9%"></img>
+<img src="https://avatars.githubusercontent.com/u/70817828?v=4" width="9%"></img>
+<img src="https://avatars.githubusercontent.com/u/84832594?v=4" width="9%"></img>
+<img src="https://avatars.githubusercontent.com/u/73348609?v=4" width="9%"></img>
+<img src="https://avatars.githubusercontent.com/u/45143018?v=4" width="9%"></img>
+<img src="https://avatars.githubusercontent.com/u/16155802?v=4" width="9%"></img>
+<img src="https://avatars.githubusercontent.com/u/67181608?v=4" width="9%"></img>
+
+
+
 
 
 ## Contributing
