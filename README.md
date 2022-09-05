@@ -600,5 +600,6 @@ If they meet the requirements above, feel free to create a PR. Happy Hacking! :s
 - [Cypress](https://www.cypress.io/) - JavaScript end-to-end testing framework ![Free](https://img.shields.io/badge/-Free-brightgreen) ![Paid](https://img.shields.io/badge/-Paid-blue)
 - [Sinon.JS](https://sinonjs.org/) - Standalone test spies, stubs and mocks for JavaScript ![Free](https://img.shields.io/badge/-Free-brightgreen)
 - [Chai](https://www.chaijs.com/) - Assertation library for JavaScript testing ![Free](https://img.shields.io/badge/-Free-brightgreen)
+- [Selenium](https://www.selenium.dev/) - Primarily it is for automating web applications for testing purposes, but is certainly not limited to just that. Boring web-based administration tasks can (and should) also be automated as well.
 
 **[⬆ back to top](#table-of-contents)**
