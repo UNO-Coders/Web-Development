@@ -1,0 +1,59 @@
+body{
+    background: #581845;
+    margin-right: auto;
+    margin-left: auto;
+    height: 100vh;
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+.main{
+    background: red;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.hrs, .mins, .secs, .milli{
+    position: absolute;
+    transition: transform 500ms ease;
+}
+.hrs{
+    height: 48%;
+}
+.mins{
+    height:40%;
+}
+.secs{
+    height:34%;
+}
+.milli{
+    height:28%
+}
+button{
+    background: black;
+    color: gainsboro;
+    width: 30%;
+    height: 3%;
+    border: none;
+    border-radius: 5px;
+    position: relative;
+    top: 30%
+}
+button:active{
+    background: wheat;
+    color: rebeccapurple;
+}
+.arrow{
+    top:-200px;
+    position: relative;
+    z-index: 10;
+    background-color: #581845;
+    width: 0; 
+    height: 0; 
+    border-left: 20px solid transparent;
+    border-right: 20px solid transparent;
+    border-top: 20px solid #f00;
+}
