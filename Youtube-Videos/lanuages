@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>
+            Youtube videos
+        </title>
+    </head>
+    <body>
+        <h1>Free youtube videos</h1>
+        <h2>1.Python full university course</h2>
+        <iframe width="560" height="315" src="https://www.youtube.com/embed/8DvywoWv6fI" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        <h2>2.JAVA + DSA + interview preparation playlist</h2>
+        <iframe width="560" height="315" src="https://www.youtube.com/embed/videoseries?list=PL9gnSGHSqcnr_DxHsP7AW9ftq0AtAyYqJ" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        <h2>3. C++ tutorial </h2>
+        <iframe width="560" height="315" src="https://www.youtube.com/embed/-TkoO8Z07hI" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        <p>FOR PRACTICE </p>
+        <a href="https://leetcode.com/" target="_blank">leetcode.com</a>
+    </body>
+</html>
