@@ -1,0 +1,13 @@
+{
+    "name": "Random Hex Color Code",
+    "version": "0.0.1",
+    "manifest_version": 2,
+    "browser_action": {
+        "default_popup": "index.html",
+        "default_icon": "logo.png"
+    },
+    "icons": {
+        "128": "logo.png"
+    },
+    "permissions": ["activeTab"]
+}
