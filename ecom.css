@@ -1,0 +1,195 @@
+.navi {
+    padding-top: 25px;
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+}
+.col {
+    display: inline-block;
+}
+.t1 {
+    font-weight: 600;
+    font-family: 'Kanit', sans-serif;
+    font-size: 30px;
+    margin-right: 40px;
+    margin-left: 80px;
+    
+}
+.disp {
+    display: block;
+}
+.t2 {
+    font-family: 'Kanit', sans-serif;
+    color: #9CB4CC;
+    font-weight: 400;
+    padding-left: 15px;
+    padding-top: 13px;
+    word-spacing: 23px;
+    padding-left: 0%;
+}
+.avatar {
+    height: 40px;
+    width: 40px;
+    position: absolute;
+    right: 200px;
+    top: 30px;
+    display: block;
+}
+.nav-line {
+    width: 68%;
+    margin-left: auto;
+    margin-right: auto;
+    border-color: #B2B1B9;
+    border-bottom: 0cm;
+    border-left: 0cm;
+    border-right: 0cm;
+    margin-top: 12px;
+    border-width: 4px;
+}
+.row1 {
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+}
+.rowa {
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 40px;
+}
+.disp {
+    height: 320px;
+    width: 335px;
+    margin-left: 16%;
+    border-radius: 10px;
+}
+.bus {
+    display: block;
+    font-style: normal;
+    color: #FF7F3F;
+    font-family: 'Kanit', sans-serif;
+    font-size: 0.8rem;
+}
+.tag {
+    font-style: normal;
+    font-size: 2.5rem;
+    margin-top: 10px;
+    color: black;
+    font-family: 'Kanit', sans-serif;
+    display: block;
+    line-height: 45px;
+}
+.description {
+    font-style: normal;
+    color: #576F72;
+    margin-top: 30px;
+    display: block;
+    margin-top: 30px;
+    width: 85%;
+}
+.dprice {
+    display: block;
+    font-style: normal;
+    margin-top: 10px;
+    font-family: 'Kanit', sans-serif;
+    font-size: 1.7rem;
+}
+.discount {
+    display: inline;
+    color: #FF7F3F;
+    font-family: 'Kanit', sans-serif;
+    font-style: normal;
+    margin-left: 13px;
+    font-size: 1.2rem;
+    background-color: #FDEEDC;
+    border-radius: 4px;
+    padding: 3px 5px;
+}
+.aprice {
+    font-style: normal;
+    color: #7D9D9C;
+    text-decoration: line-through;
+    display: block;
+    margin-top: 3px;
+    font-family: 'Kanit', sans-serif;
+}
+.opt {
+    display: inline-block;
+    border-radius: 10px;
+    height: 66px;
+    width: 66px;
+    margin-top: 18px;
+    margin-right: 19px;
+    
+}
+.alternates {
+    margin-left: 80px;
+}
+.quantity {
+    display: inline-block;
+    margin-top: 25px;
+    color: #FF7F3F;
+    background-color: #F0EBE3;
+    border-radius: 5px;
+    width: 100px;
+    text-indent: 5px;
+    font-style: normal;
+    font-family: 'Kanit', sans-serif;
+    height: 40px;
+    font-size: 1.6rem;
+    word-spacing: 12px;
+}
+.num {
+    color: black;
+    font-style: normal;
+}
+.addCart {
+    font-style: normal;
+    color: #FFFFFF;
+    font-family: 'Kanit', sans-serif;
+    background-color: #FF7F3F;
+    border-radius: 5px;
+    margin-left: 10px;
+    padding-left: 35px;
+    padding-right: 35px;
+    padding-top: 10px;
+    padding-bottom: 7px;
+    border: none;
+    font-size: 0.9rem;
+    word-spacing: 1.7px;
+    letter-spacing: 1.4px;
+
+}
+.onClick {
+    opacity: 0.4;
+    display: inline-block;
+    border-radius: 10px;
+    border: solid;
+    border-color: #F57328;
+    height: 66px;
+    width: 66px;
+    margin-top: 18px;
+    margin-right: 19px;
+
+}
+.res {
+    font-style: normal;
+    display: block;
+    margin-top: 17px;
+    font-family: 'Kanit', sans-serif;
+    color: #73777B;
+
+
+}
+.res {
+    opacity: 0;
+}
+.resClick {
+    opacity: 1;
+    font-style: normal;
+    display: block;
+    margin-top: 17px;
+    font-family: 'Kanit', sans-serif;
+    color: #73777B;
+
+}
