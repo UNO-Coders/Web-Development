@@ -170,7 +170,12 @@
     width: 66px;
     margin-top: 18px;
     margin-right: 19px;
+    
+    box-shadow: 0 0 2em 0.2em  hsl(186 100% 69%);
 
+}
+onClick:hover{
+	box-shadow: 0 5px 50px 0 #002f75 inset,0 5px 50px 0 #15f4ee,0 5px 50px 0 #15f4ee inset,0 5px 50px 0 #15f4ee;
 }
 .res {
     font-style: normal;
