@@ -2,6 +2,7 @@ from typing import Callable, Any
 from functools import partial
 import concurrent.futures
 from loguru import logger
+import asyncio
 
 
 class ThreadRipper(object):
@@ -48,3 +49,31 @@ class ThreadRipper(object):
         finally:
             self.__partials = []
             self.__futures = []
+
+
+class ThreadRipperAsync:
+    def __init__(self, n_workers: int) -> None:
+        """
+        Args:
+            n_workers (int): number of workers to use
+        Usage:
+            _tr = ThreadRipperAsync(20)
+            result = await _tr.run(
+                *[async_function(i) for i in range(10)])],
+            )
+        """
+        self.__worker_count = n_workers
+
+    async def run(self, *tasks):
+        semaphore = asyncio.Semaphore(self.__worker_count)
+
+        async def fn(aw):
+            async with semaphore:
+                await asyncio.sleep(delay=1)
+                return await aw
+
+        return await asyncio.gather(*(fn(aw) for aw in tasks))
+
+    async def run_next(self, *tasks):
+        f = [*tasks]
+        return await asyncio.wait(f)
