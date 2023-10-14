@@ -1,0 +1,8 @@
+Flask
+Flask-RESTful
+Flask-Cors
+marshmallow
+python-dotenv
+Pillow
+asyncio
+playwright
