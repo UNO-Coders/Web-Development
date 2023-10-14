@@ -18,7 +18,7 @@ def init_app():
 
     with app.app_context():
 
-        from .mailman import mail_bp
+        from .mailman import mail_bp, misc_routes
 
         app.register_blueprint(mail_bp, url_prefix="/mail")
         

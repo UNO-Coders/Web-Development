@@ -17,7 +17,7 @@ def init_app():
     app.config.from_object("config.Config")
 
     with app.app_context():
-        from .api import snap_bp
+        from .api import snap_bp, misc_routes
 
         app.register_blueprint(snap_bp, url_prefix="/api")
 
