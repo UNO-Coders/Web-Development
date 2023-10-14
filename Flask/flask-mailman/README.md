@@ -1,5 +1,4 @@
 ## Flask-Mailman Integration
----
 
 This project aims at providing a template to integrate the `Flask-Mailman` package with a simple `Flask` project.
 
