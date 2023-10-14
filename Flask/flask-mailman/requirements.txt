@@ -1,0 +1,5 @@
+Flask
+Flask-Mailman
+Flask-RESTful
+Flask-Cors
+Flask-WTF
