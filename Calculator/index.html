@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Calculator</title>
+	<link rel="stylesheet" type="text/css" href="./style.css">
+
+</head>
+<body>
+	<div class="calculator">
+		<div class="display">
+			<input type="text" id="result" placeholder="0" readonly>
+		</div>
+		<div class="buttons">
+			<button onclick="clearResult()" class="opreator">C</button>
+			<button onclick="deleteChar()" class="opreator">DEL</button>
+			<button onclick="appendToResult('/')" class="opreator">/</button>
+			<button onclick="appendToResult('*')" class="opreator">x</button>
+			<button onclick="appendToResult('7')" class="opredn">7</button>
+			<button onclick="appendToResult('8')" class="opredn">8</button>
+			<button onclick="appendToResult('9')" class="opredn">9</button>
+			<button onclick="appendToResult('-')" class="opreator">-</button>
+			<button onclick="appendToResult('4')" class="opredn">4</button>
+			<button onclick="appendToResult('5')" class="opredn">5</button>
+			<button onclick="appendToResult('6')" class="opredn">6</button>
+			<button onclick="appendToResult('+')" class="opreator">+</button>
+			<button onclick="appendToResult('1')" class="opredn">1</button>
+			<button onclick="appendToResult('2')" class="opredn">2</button>
+			<button onclick="appendToResult('3')" class="opredn">3</button>
+			<button onclick="appendToResult('0')" class="opredn">0</button>
+			<button onclick="appendToResult('.')">.</button>
+			<button class="eq" onclick="calculateResult()">=</button>
+		</div>
+	</div>
+	<script type="text/javascript" src="index.js"></script>
+</body>
+</html>
