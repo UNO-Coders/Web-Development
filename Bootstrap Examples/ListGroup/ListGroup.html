@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+      crossorigin="anonymous"
+    />
+  </head>
+  <body class="bg-warning">
+    <div class="d-flex justify-content-center">
+      <h1>List Groups</h1>
+    </div>
+
+    <p class="lead d-flex justify-content-center fw-bold">
+      Bootstrap 5 examples for List Group Components:
+    </p>
+
+    <h2 class="display-6 text-decoration-underline mb-3">1> Basic example:</h2>
+
+    <div class="d-flex justify-content-center mb-5">
+      <ul class="list-group col-8">
+        <li class="list-group-item">First</li>
+        <li class="list-group-item">Second</li>
+        <li class="list-group-item">Third</li>
+        <li class="list-group-item">Fourth</li>
+        <li class="list-group-item">Fifth</li>
+      </ul>
+    </div>
+
+    <h2 class="display-6 text-decoration-underline">2> Active items:</h2>
+    <p class="fw-bold mb-3">
+      Add ".active" to a ".list-group-item" to indicate the current active
+      selection.
+    </p>
+    <div class="d-flex justify-content-center mb-5">
+      <ul class="list-group col-8">
+        <li class="list-group-item active" aria-current="true">
+          An active item
+        </li>
+        <li class="list-group-item">Second</li>
+        <li class="list-group-item">Third</li>
+        <li class="list-group-item">Fourth</li>
+        <li class="list-group-item">Fifth</li>
+      </ul>
+    </div>
+
+    <h2 class="display-6 text-decoration-underline">3> Links and buttons:</h2>
+    <p class="fw-bold mb-4">
+      Use a tags or buttons tag to create actionable list group items with
+      hover, disabled, and active states by adding .list-group-item-action.
+    </p>
+    <div class="d-flex justify-content-center mb-5">
+      <div class="list-group col-8">
+        <a
+          href="#"
+          class="list-group-item list-group-item-action"
+          aria-current="true"
+        >
+          First link
+        </a>
+        <a href="#" class="list-group-item list-group-item-action"
+          >Second link</a
+        >
+        <a href="#" class="list-group-item list-group-item-action active"
+          >Current Active link</a
+        >
+        <a href="#" class="list-group-item list-group-item-action"
+          >Fourth link</a
+        >
+        <a
+          href="#"
+          class="list-group-item list-group-item-action disabled"
+          tabindex="-1"
+          aria-disabled="true"
+          >Disabled link</a
+        >
+      </div>
+    </div>
+
+    <h2 class="display-6 text-decoration-underline">4> Flush:</h2>
+    <p class="fw-bold mb-3">
+      Add ".list-group-flush" to remove some borders and rounded corners to
+      render list group items edge-to-edge in a parent container (e.g., cards).
+    </p>
+    <div class="d-flex justify-content-center mb-5">
+      <ul class="list-group list-group-flush col-8">
+        <li class="list-group-item">An item</li>
+        <li class="list-group-item">A second item</li>
+        <li class="list-group-item">A third item</li>
+        <li class="list-group-item">A fourth item</li>
+        <li class="list-group-item">And a fifth one</li>
+      </ul>
+    </div>
+
+    <h2 class="display-6 text-decoration-underline">5> Numbered:</h2>
+    <p class="fw-bold mb-3">
+      Add the ".list-group-numbered "modifier class (and optionally use an
+      element)
+    </p>
+    <div class="d-flex justify-content-center mb-5">
+      <ol class="list-group list-group-numbered col-8">
+        <li class="list-group-item">Fisrt</li>
+        <li class="list-group-item">Second</li>
+        <li class="list-group-item">Third</li>
+      </ol>
+    </div>
+
+    <h2 class="display-6 text-decoration-underline">6> Colored:</h2>
+    <p class="fw-bold mb-3">
+      To colour the background of list items, you can use the list contextual
+      background classes for colour
+    </p>
+    <div class="d-flex justify-content-center mb-5">
+      <ul class="list-group col-8">
+        <li class="list-group-item">Little Women</li>
+        <li class="list-group-item list-group-item-light">Native Son</li>
+        <li class="list-group-item list-group-item-secondary">
+          Great Expectations
+        </li>
+        <li class="list-group-item list-group-item-dark">The Sun Also Rises</li>
+        <li class="list-group-item list-group-item-primary">The Stranger</li>
+        <li class="list-group-item list-group-item-info">
+          For Whom the Bell Tolls
+        </li>
+        <li class="list-group-item list-group-item-success">The Hobbit</li>
+        <li class="list-group-item list-group-item-warning">Madame Bovary</li>
+        <li class="list-group-item list-group-item-danger">
+          The Wind in the Willows
+        </li>
+      </ul>
+    </div>
+
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+      crossorigin="anonymous"
+    ></script>
+  </body>
+</html>
